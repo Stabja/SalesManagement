@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.stabstudio.drawernavig">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/sales_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/sales_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/home_activity_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AddItemActivity"
+            android:label="@string/account_fragment_name"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Modules.Accounts.CreateAccountActivity"
+            android:label="@string/account_create_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Accounts.ReadAccountActivity"
+            android:label="@string/account_read_name"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Modules.Accounts.UpdateAccountActivity"
+            android:label="@string/account_update_name"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Modules.Contacts.CreateContactActivity"
+            android:label="@string/contact_create_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Contacts.ReadContactActivity"
+            android:label="@string/contact_read_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Contacts.UpdateContactActivity"
+            android:label="@string/contact_update_name"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Modules.Leads.CreateLeadActivity"
+            android:label="@string/lead_create_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Leads.ReadLeadActivity"
+            android:label="@string/lead_read_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Leads.UpdateLeadActivity"
+            android:label="@string/lead_update_name"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Modules.Deals.CreateDealActivity"
+            android:label="@string/deal_create_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Deals.ReadDealActivity"
+            android:label="@string/deal_read_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Deals.UpdateDealActivity"
+            android:label="@string/deal_update_name"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Modules.Events.CreateEventActivity"
+            android:label="@string/event_create_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Events.ReadEventActivity"
+            android:label="@string/event_read_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Events.UpdateEventActivity"
+            android:label="@string/event_update_name"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Modules.Feeds.CreateFeedActivity"
+            android:label="@string/feed_create_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Feeds.ReadFeedActivity"
+            android:label="@string/feed_read_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Feeds.UpdateFeedActivity"
+            android:label="@string/feed_update_name"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Modules.Tasks.CreateTaskActivity"
+            android:label="@string/task_create_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Tasks.ReadTaskActivity"
+            android:label="@string/task_read_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Modules.Tasks.UpdateTaskActivity"
+            android:label="@string/task_update_name"
+            android:screenOrientation="portrait" />
+
+
+    </application>
+
+</manifest>

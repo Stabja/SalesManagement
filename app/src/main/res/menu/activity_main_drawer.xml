@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_feeds"
+            android:icon="@drawable/ic_menu_feeds"
+            android:title="Feeds" />
+    </group>
+
+    <item android:title="Modules">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_leads"
+                android:icon="@drawable/ic_menu_leads"
+                android:title="Leads" />
+            <item
+                android:id="@+id/nav_accounts"
+                android:icon="@drawable/ic_menu_accounts"
+                android:title="Accounts" />
+            <item
+                android:id="@+id/nav_contacts"
+                android:icon="@drawable/ic_menu_contacts"
+                android:title="Contacts" />
+            <item
+                android:id="@+id/nav_deals"
+                android:icon="@drawable/ic_menu_deals"
+                android:title="Deals" />
+            <item
+                android:id="@+id/nav_tasks"
+                android:icon="@drawable/ic_menu_tasks"
+                android:title="Tasks" />
+            <item
+                android:id="@+id/nav_events"
+                android:icon="@drawable/ic_menu_event"
+                android:title="Events" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

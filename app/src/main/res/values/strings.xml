@@ -1,0 +1,129 @@
+<resources>
+    <string name="app_name">DrawerNavig</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home_activity_name">Sales</string>
+
+    <string name="account_fragment_name">Accounts</string>
+    <string name="account_create_name">Add Account</string>
+    <string name="account_read_name">Read Account</string>
+    <string name="account_update_name">Edit Account</string>
+
+    <string name="contact_fragment_name">Contacts</string>
+    <string name="contact_create_name">Add Contact</string>
+    <string name="contact_read_name">Read Contact</string>
+    <string name="contact_update_name">Edit Contact</string>
+
+    <string name="lead_fragment_name">Leads</string>
+    <string name="lead_create_name">Add Lead</string>
+    <string name="lead_read_name">Read Lead</string>
+    <string name="lead_update_name">Edit Lead</string>
+
+    <string name="deal_fragment_name">Deals</string>
+    <string name="deal_create_name">Add Deal</string>
+    <string name="deal_read_name">Read Deal</string>
+    <string name="deal_update_name">Edit Deal</string>
+
+    <string name="task_fragment_name">Tasks</string>
+    <string name="task_create_name">Add Task</string>
+    <string name="task_read_name">Read Task</string>
+    <string name="task_update_name">Edit Task</string>
+
+    <string name="event_fragment_name">Events</string>
+    <string name="event_create_name">Add Event</string>
+    <string name="event_read_name">Read Event</string>
+    <string name="event_update_name">Edit Event</string>
+
+    <string name="feed_fragment_name">Feeds</string>
+    <string name="feed_create_name">Add Feed</string>
+    <string name="feed_read_name">Read Feed</string>
+    <string name="feed_update_name">Edit Feed</string>
+
+
+    <string-array name="account_type">
+        <item>Analyst</item>
+        <item>Competitor</item>
+        <item>Customer</item>
+        <item>Distributor</item>
+        <item>Integrator</item>
+        <item>Investor</item>
+        <item>Other</item>
+        <item>Partner</item>
+        <item>Press</item>
+        <item>Prospect</item>
+        <item>Reseller</item>
+        <item>Retailer</item>
+        <item>Supplier</item>
+        <item>Vendor</item>
+    </string-array>
+
+    <string-array name="ownership">
+        <item>Other</item>
+        <item>Private</item>
+        <item>Public</item>
+        <item>Subsidiary</item>
+    </string-array>
+
+    <string-array name="lead_source">
+        <item>Advertisement</item>
+        <item>Cold Call</item>
+        <item>Employee Referral</item>
+        <item>External Referral</item>
+        <item>Online Store</item>
+        <item>Partner</item>
+        <item>Public Relations</item>
+        <item>Sales Mail Alias</item>
+        <item>Seminar Partner</item>
+        <item>Seminar-Internal</item>
+        <item>Trade Show</item>
+        <item>Web Download</item>
+        <item>Web Research</item>
+        <item>Web Cases</item>
+        <item>Web Mail</item>
+        <item>Chat</item>
+    </string-array>
+
+    <string-array name="lead_status">
+        <item>Attempted to Contact</item>
+        <item>Contact in Future</item>
+        <item>Contacted</item>
+        <item>Junk Lead</item>
+        <item>Lost Lead</item>
+        <item>Not Contacted</item>
+        <item>Pre Qualified</item>
+    </string-array>
+
+    <string-array name="industry">
+        <item>ASP</item>
+        <item>Data/Telecom</item>
+        <item>ERP</item>
+        <item>Government/Military</item>
+        <item>Large Enterprise</item>
+        <item>ManagementISV</item>
+        <item>Management Service Provider</item>
+        <item>Network Equipment</item>
+        <item>Non-management</item>
+        <item>Optical Networking</item>
+        <item>Service Provider</item>
+        <item>Small/Medium Enterprise</item>
+        <item>Storage Equipment</item>
+        <item>Storage Service Provider</item>
+        <item>Systems Integrator</item>
+        <item>Wireless Industry</item>
+    </string-array>
+
+    <string-array name="rating">
+        <item>Aquired</item>
+        <item>Active</item>
+        <item>Market Failed</item>
+        <item>Project Cancelled</item>
+        <item>ShutDown</item>
+    </string-array>
+
+</resources>

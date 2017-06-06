@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_edit"
+        android:icon="@drawable/ic_edit_black"
+        android:title="Edit"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_clone"
+        android:title="Clone"
+        android:orderInCategory="1"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_delete"
+        android:title="Delete"
+        android:orderInCategory="2"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_refresh"
+        android:title="Refresh"
+        android:orderInCategory="3"
+        app:showAsAction="never" />
+
+</menu>
