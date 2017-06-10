@@ -45,6 +45,7 @@
     <string name="feed_read_name">Read Feed</string>
     <string name="feed_update_name">Edit Feed</string>
 
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec condimentum ante, quis mattis mi. Proin ut rhoncus libero, ac euismod neque.</string>
 
     <string-array name="account_type">
         <item>Analyst</item>
@@ -124,6 +125,56 @@
         <item>Market Failed</item>
         <item>Project Cancelled</item>
         <item>ShutDown</item>
+    </string-array>
+
+    <string-array name="deal_stage">
+        <item>Qualification</item>
+        <item>Needs Analysis</item>
+        <item>Value Proposition</item>
+        <item>Id Descision Makers</item>
+        <item>Proposal/Price Quote</item>
+        <item>Negotiation/Review</item>
+        <item>Closed Won</item>
+        <item>Closed Lost</item>
+        <item>Closed lost to Competition</item>
+    </string-array>
+
+    <string-array name="deal_type">
+        <item>Existing Business</item>
+        <item>New Business</item>
+    </string-array>
+
+    <string-array name="task_subject">
+        <item>Email</item>
+        <item>Call</item>
+        <item>Meeting</item>
+        <item>Send Letter</item>
+        <item>Product Demo</item>
+    </string-array>
+
+    <string-array name="task_status">
+        <item>Not Started</item>
+        <item>Deferred</item>
+        <item>In Progress</item>
+        <item>Completed</item>
+        <item>Waiting on someone else</item>
+    </string-array>
+
+    <string-array name="task_priority">
+        <item>Highest</item>
+        <item>High</item>
+        <item>Normal</item>
+        <item>Low</item>
+        <item>Lowest</item>
+    </string-array>
+
+    <string-array name="task_repeat">
+        <item>None</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+        <item>Custom</item>
     </string-array>
 
 </resources>

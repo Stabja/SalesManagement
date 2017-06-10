@@ -9,7 +9,7 @@
     android:background="#eee"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.stabstudio.drawernavig.Modules.Contacts.UpdateContactActivity">
+    tools:context="com.stabstudio.salesmgmt.Modules.Contacts.UpdateContactActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -477,18 +477,16 @@
                 android:layout_toStartOf="@+id/editText14"
                 android:text="Facebook" />
 
-
-
         </RelativeLayout>
 
     </ScrollView>
 
     <Button
-        android:id="@+id/create_contact"
+        android:id="@+id/update_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:text="CREATE"
+        android:text="UPDATE"
         android:textColor="#fff"
         android:background="@drawable/post_button_back" />
 

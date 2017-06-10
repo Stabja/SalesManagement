@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#eee"
-    tools:context="com.stabstudio.drawernavig.Modules.Contacts.ReadContactActivity">
+    tools:context="com.stabstudio.salesmgmt.Modules.Contacts.ReadContactActivity">
 
     <ScrollView
         android:layout_width="match_parent"

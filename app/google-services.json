@@ -52,17 +52,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:933782318205:android:fd6d5fc1d18ccc04",
+        "mobilesdk_app_id": "1:933782318205:android:1e1ba6ceff417a1b",
         "android_client_info": {
-          "package_name": "com.stabstudio.drawernavig"
+          "package_name": "com.stabstudio.salesmgmt"
         }
       },
       "oauth_client": [
         {
-          "client_id": "933782318205-9pjbgetncfpq43o11lpaf2uk6jt22kjp.apps.googleusercontent.com",
+          "client_id": "933782318205-evegibm1okn8m3r8nst87j7g4p1si2si.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.stabstudio.drawernavig",
+            "package_name": "com.stabstudio.salesmgmt",
             "certificate_hash": "996d1b72344e9ce6d3eb3f92d6ec29dbde4767fe"
           }
         },

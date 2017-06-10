@@ -9,7 +9,7 @@
     android:background="#eee"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.stabstudio.drawernavig.Modules.Accounts.CreateAccountActivity">
+    tools:context="com.stabstudio.salesmgmt.Modules.Accounts.CreateAccountActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                 android:inputType="numberDecimal"
                 android:layout_alignParentEnd="true" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText8"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
@@ -120,12 +120,13 @@
                 android:layout_alignStart="@+id/editText7"
                 android:layout_below="@+id/editText7"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:textSize="14dp"
                 android:paddingLeft="12dp"
                 android:inputType="textPersonName"
                 android:layout_alignParentEnd="true" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText9"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
@@ -133,6 +134,7 @@
                 android:layout_alignStart="@+id/editText8"
                 android:layout_below="@+id/editText8"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:textSize="14dp"
                 android:paddingLeft="12dp"
                 android:inputType="textPersonName"

@@ -9,7 +9,7 @@
     android:background="#eee"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.stabstudio.drawernavig.Modules.Accounts.UpdateAccountActivity">
+    tools:context="com.stabstudio.salesmgmt.Modules.Accounts.UpdateAccountActivity">
 
     <ScrollView
         android:layout_width="match_parent"

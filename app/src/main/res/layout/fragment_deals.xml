@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.stabstudio.drawernavig.fragments.DealsFragment">
+    tools:context="com.stabstudio.salesmgmt.fragments.DealsFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/deal_refresh_layout"
