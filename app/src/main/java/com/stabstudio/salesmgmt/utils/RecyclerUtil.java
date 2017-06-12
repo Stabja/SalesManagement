@@ -62,28 +62,29 @@ public class RecyclerUtil{
     private Paint paint;
     private String fromFragment;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout refreshLayout;
 
     private FirebaseAuth auth;
     private DatabaseReference dRef;
     private StorageReference sRef;
 
-    public RecyclerUtil(Activity activity, RecyclerView recyclerView, String fromFragment){
+    public RecyclerUtil(String fromFragment, Activity activity, RecyclerView recyclerView, SwipeRefreshLayout refreshLayout){
+        this.fromFragment = fromFragment;
         this.activity = activity;
         this.recyclerView = recyclerView;
-        this.fromFragment = fromFragment;
+        this.refreshLayout = refreshLayout;
         paint = new Paint();
 
         dRef = FirebaseDatabase.getInstance().getReference("Sales");
         sRef = FirebaseStorage.getInstance().getReference();
     }
 
-    public void refreshData(final String branch, final RecyclerView recyclerView, final SwipeRefreshLayout refreshLayout){
-        DatabaseReference reference = dRef.child(branch);
+    public void refreshData(){
+        DatabaseReference reference = dRef.child(fromFragment);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if(branch.equals("accounts")){
+                if(fromFragment.equals("accounts")){
 
                     MainActivity.accountsList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -94,7 +95,7 @@ public class RecyclerUtil{
                     recyclerView.setAdapter(MainActivity.accountsAdapter);
                     refreshLayout.setRefreshing(false);
 
-                } else if(branch.equals("contacts")){
+                } else if(fromFragment.equals("contacts")){
 
                     MainActivity.contactsList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -105,7 +106,7 @@ public class RecyclerUtil{
                     recyclerView.setAdapter(MainActivity.contactsAdapter);
                     refreshLayout.setRefreshing(false);
 
-                } else if(branch.equals("leads")){
+                } else if(fromFragment.equals("leads")){
 
                     MainActivity.leadsList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -116,7 +117,7 @@ public class RecyclerUtil{
                     recyclerView.setAdapter(MainActivity.leadsAdapter);
                     refreshLayout.setRefreshing(false);
 
-                } else if(branch.equals("deals")){
+                } else if(fromFragment.equals("deals")){
 
                     MainActivity.dealsList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -127,7 +128,7 @@ public class RecyclerUtil{
                     recyclerView.setAdapter(MainActivity.dealsAdapter);
                     refreshLayout.setRefreshing(false);
 
-                } else if(branch.equals("events")){
+                } else if(fromFragment.equals("events")){
 
                     MainActivity.eventsList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -138,7 +139,7 @@ public class RecyclerUtil{
                     recyclerView.setAdapter(MainActivity.eventsAdapter);
                     refreshLayout.setRefreshing(false);
 
-                } else if(branch.equals("feeds")){
+                } else if(fromFragment.equals("feeds")){
 
                     MainActivity.feedsList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -149,7 +150,7 @@ public class RecyclerUtil{
                     recyclerView.setAdapter(MainActivity.feedsAdapter);
                     refreshLayout.setRefreshing(false);
 
-                } else if(branch.equals("tasks")){
+                } else if(fromFragment.equals("tasks")){
 
                     MainActivity.tasksList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -223,9 +224,7 @@ public class RecyclerUtil{
     }
 
     private void startUpdateActivity(int position){
-
         Intent intent;
-
         if(fromFragment.equals("accounts")){
             intent = new Intent(activity, UpdateAccountActivity.class);
             String accountId = MainActivity.accountsList.get(position).getId();
@@ -255,7 +254,6 @@ public class RecyclerUtil{
             String taskId = MainActivity.tasksList.get(position).getId();
             intent.putExtra("taskId", taskId);
         }
-
         intent.putExtra("position", position);
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.pop_enter, R.anim.still);
@@ -274,6 +272,7 @@ public class RecyclerUtil{
         deleteDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                refreshData();
                 dialog.cancel();
             }
         });
@@ -290,7 +289,7 @@ public class RecyclerUtil{
             MainActivity.accountsAdapter.notifyItemRemoved(position);
             MainActivity.accountsAdapter.notifyItemRangeChanged(position, MainActivity.accountsList.size());
             MainActivity.accountsAdapter.notifyDataSetChanged();
-            AccountsFragment.accountsFragment.refreshData();
+            refreshData();
         } else if(fromFragment.equals("contacts")){
             String id = MainActivity.contactsList.get(position).getId();
             DatabaseReference contactsRef = dRef.child("contacts");
@@ -299,7 +298,7 @@ public class RecyclerUtil{
             MainActivity.contactsAdapter.notifyItemRemoved(position);
             MainActivity.contactsAdapter.notifyItemRangeChanged(position, MainActivity.contactsList.size());
             MainActivity.contactsAdapter.notifyDataSetChanged();
-            ContactsFragment.contactsFragment.refreshData();
+            refreshData();
         } else if(fromFragment.equals("leads")){
             String id = MainActivity.leadsList.get(position).getId();
             DatabaseReference leadsRef = dRef.child("leads");
@@ -308,7 +307,7 @@ public class RecyclerUtil{
             MainActivity.leadsAdapter.notifyItemRemoved(position);
             MainActivity.leadsAdapter.notifyItemRangeChanged(position, MainActivity.leadsList.size());
             MainActivity.leadsAdapter.notifyDataSetChanged();
-            LeadsFragment.leadsFragment.refreshData();
+            refreshData();
         } else if(fromFragment.equals("deals")){
             String id = MainActivity.dealsList.get(position).getId();
             DatabaseReference dealsRef = dRef.child("deals");
@@ -317,7 +316,7 @@ public class RecyclerUtil{
             MainActivity.dealsAdapter.notifyItemRemoved(position);
             MainActivity.dealsAdapter.notifyItemRangeChanged(position, MainActivity.dealsList.size());
             MainActivity.dealsAdapter.notifyDataSetChanged();
-            DealsFragment.dealsFragment.refreshData();
+            refreshData();
         } else if(fromFragment.equals("events")){
             String id = MainActivity.eventsList.get(position).getId();
             DatabaseReference eventsRef = dRef.child("events");
@@ -326,7 +325,7 @@ public class RecyclerUtil{
             MainActivity.eventsAdapter.notifyItemRemoved(position);
             MainActivity.eventsAdapter.notifyItemRangeChanged(position, MainActivity.eventsList.size());
             MainActivity.eventsAdapter.notifyDataSetChanged();
-            EventsFragment.eventsFragment.refreshData();
+            refreshData();
         } else if(fromFragment.equals("feeds")){
             String id = MainActivity.feedsList.get(position).getId();
             DatabaseReference feedsRef = dRef.child("feeds");
@@ -335,7 +334,7 @@ public class RecyclerUtil{
             MainActivity.feedsAdapter.notifyItemRemoved(position);
             MainActivity.feedsAdapter.notifyItemRangeChanged(position, MainActivity.feedsList.size());
             MainActivity.feedsAdapter.notifyDataSetChanged();
-            FeedsFragment.feedsFragment.refreshData();
+            refreshData();
         } else {
             String id = MainActivity.tasksList.get(position).getId();
             DatabaseReference tasksRef = dRef.child("tasks");
@@ -344,7 +343,7 @@ public class RecyclerUtil{
             MainActivity.tasksAdapter.notifyItemRemoved(position);
             MainActivity.tasksAdapter.notifyItemRangeChanged(position, MainActivity.tasksList.size());
             MainActivity.tasksAdapter.notifyDataSetChanged();
-            TasksFragment.tasksFragment.refreshData();
+            refreshData();
         }
     }
 

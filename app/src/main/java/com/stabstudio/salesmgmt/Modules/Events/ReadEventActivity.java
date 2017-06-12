@@ -22,6 +22,8 @@ import com.google.firebase.storage.StorageReference;
 import com.stabstudio.salesmgmt.R;
 import com.stabstudio.salesmgmt.models.Event;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -137,14 +139,22 @@ public class ReadEventActivity extends AppCompatActivity {
                 tv4.setText(temp.getFrom());
                 tv5.setText(temp.getTo());
                 tv6.setText(temp.getOrganiser());
-                //tv7.setText("");
+                tv7.setText(convertListToString(temp));
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "Cannot Load Values", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String convertListToString(Event event){
+        ArrayList<String> pcptsList =  event.getParticipants();
+        String pcptsStr = "";
+        for(String str : pcptsList){
+            pcptsStr += str + "\n";
+        }
+        return pcptsStr;
     }
 
 }

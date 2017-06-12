@@ -56,10 +56,6 @@ public class UpdateContactActivity extends AppCompatActivity {
     @BindView(R.id.update_contact) Button update;
 
     private Uri imageFile;
-    private int mYear;
-    private int mMonth;
-    private int mDay;
-
     private String contactId;
     private int position;
 
@@ -119,9 +115,9 @@ public class UpdateContactActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ContactsFragment.contactsFragment.refreshData();
-        overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_translate);
+        ContactsFragment.recyclerUtil.refreshData();
         MainActivity.contactsAdapter.notifyDataSetChanged();
+        overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_translate);
         finish();
     }
 
@@ -166,9 +162,13 @@ public class UpdateContactActivity extends AppCompatActivity {
                 && !chkEmt(et7) && !chkEmt(et8) && !chkEmt(et9) && !chkEmt(et11) &&!chkEmt(et12)){
 
             DatabaseReference contactsRef = dRef.child("contacts");
-
             String key = contactId;
-            //String photoUrl = imageFile.toString();
+            String photoUrl;
+            if(imageFile != null){
+                photoUrl = imageFile.toString();
+            } else {
+                photoUrl = "";
+            }
             String a = et1.getText().toString();
             String b = et2.getText().toString();
             String c = et3.getText().toString();
@@ -184,15 +184,13 @@ public class UpdateContactActivity extends AppCompatActivity {
             String m = et13.getText().toString();
             String n = et14.getText().toString();
 
-            Contact temp = new Contact(key, "not yet", a, b, c, d, e, f, g, h, i, j, k, l, m, n);
-
+            Contact temp = new Contact(key, photoUrl, a, b, c, d, e, f, g, h, i, j, k, l, m, n);
             contactsRef.child(key).setValue(temp);         //Editing in Firebase
             changeDataInLocalList(temp);                   //Editing in Local List
-
-            ContactsFragment.contactsFragment.refreshData();
+            ContactsFragment.recyclerUtil.refreshData();
             Toast.makeText(this, "Contact Updated", Toast.LENGTH_SHORT).show();
+            overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_translate);
             finish();
-            overridePendingTransition(R.anim.still, R.anim.slide_out_down);
         } else {
             Toast.makeText(this, "Please fill all values.", Toast.LENGTH_SHORT).show();
         }

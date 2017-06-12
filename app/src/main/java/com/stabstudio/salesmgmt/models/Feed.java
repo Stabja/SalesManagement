@@ -1,9 +1,10 @@
 package com.stabstudio.salesmgmt.models;
 
+
 public class Feed {
 
     private String id;
-    private String userId;      //From Accounts
+    private String userId;         //From Accounts
     private String title;
     private String status;
     private String photoUrl;

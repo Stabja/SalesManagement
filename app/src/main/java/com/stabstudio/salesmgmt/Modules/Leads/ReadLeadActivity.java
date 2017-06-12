@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
-import com.stabstudio.salesmgmt.Modules.Leads.CreateLeadActivity;
 
 import com.stabstudio.salesmgmt.R;
 import com.stabstudio.salesmgmt.models.Lead;
@@ -42,9 +41,9 @@ public class ReadLeadActivity extends AppCompatActivity {
     @BindView(R.id.editText7) TextView tv7;
     @BindView(R.id.editText8) TextView tv8;
     @BindView(R.id.editText9) TextView tv9;
-    @BindView(R.id.editText10) TextView tv11;
-    @BindView(R.id.editText11) TextView tv12;
-    @BindView(R.id.editText12) TextView tv13;
+    @BindView(R.id.editText10) TextView tv10;
+    @BindView(R.id.editText11) TextView tv11;
+    @BindView(R.id.editText12) TextView tv12;
 
     private String leadId;
 
@@ -137,18 +136,18 @@ public class ReadLeadActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Lead temp = dataSnapshot.child(leadId).getValue(Lead.class);
-                /*tv1.setText(temp.getFirstName());
+                tv1.setText(temp.getFirstName());
                 tv2.setText(temp.getLastName());
-                tv3.setText(temp.getAccountName());
-                tv4.setText(temp.getLeadSource());
-                tv5.setText(temp.getDepartment());
-                tv6.setText(temp.getDateofBirth());
-                tv7.setText(temp.getEmail());
-                tv8.setText(temp.getMobile());
-                tv9.setText(temp.getSkypeId());
-                tv11.setText(temp.getLinkedin());
-                tv12.setText(temp.getTwitter());
-                tv13.setText(temp.getFacebook());*/
+                tv3.setText(temp.getCompany());
+                tv4.setText(temp.getEmail());
+                tv5.setText(temp.getPhone());
+                tv6.setText(temp.getWebsite());
+                tv7.setText(temp.getLeadSource());
+                tv8.setText(temp.getLeadStatus());
+                tv9.setText(temp.getIndustry());
+                tv10.setText(temp.getEmployees());
+                tv11.setText(temp.getRevenue());
+                tv12.setText(temp.getRating());
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

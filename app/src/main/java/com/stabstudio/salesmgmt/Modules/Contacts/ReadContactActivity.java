@@ -148,7 +148,6 @@ public class ReadContactActivity extends AppCompatActivity {
                 tv12.setText(temp.getTwitter());
                 tv13.setText(temp.getFacebook());
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getApplicationContext(), "Cannot Load Values", Toast.LENGTH_SHORT).show();

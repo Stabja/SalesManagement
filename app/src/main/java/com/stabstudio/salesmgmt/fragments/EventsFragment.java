@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.fabtransitionactivity.SheetLayout;
@@ -28,6 +29,9 @@ import com.stabstudio.salesmgmt.adapters.EventsAdapter;
 import com.stabstudio.salesmgmt.models.Event;
 import com.stabstudio.salesmgmt.utils.RecyclerUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class EventsFragment extends Fragment {
 
@@ -37,7 +41,8 @@ public class EventsFragment extends Fragment {
     private FloatingActionButton mFab;
     private SheetLayout mSheetLayout;
 
-    private RecyclerUtil recyclerUtil;
+    LinearLayout progressLayout;
+    public static RecyclerUtil recyclerUtil;
     public static EventsFragment eventsFragment;
 
     private DatabaseReference dRef;
@@ -50,6 +55,8 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vi = inflater.inflate(R.layout.fragment_events, container, false);
 
+        progressLayout = (LinearLayout) vi.findViewById(R.id.progress_layout);
+        progressLayout.setVisibility(View.VISIBLE);
         dRef = FirebaseDatabase.getInstance().getReference("Sales");
         sRef = FirebaseStorage.getInstance().getReference();
 
@@ -59,19 +66,18 @@ public class EventsFragment extends Fragment {
         recyclerView = (RecyclerView) vi.findViewById(R.id.event_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(MainActivity.eventsAdapter);
-
-        recyclerUtil = new RecyclerUtil(getActivity(), recyclerView, "events");
-        recyclerUtil.initSwipe();
+        //recyclerView.setAdapter(MainActivity.eventsAdapter);
 
         refreshLayout = (SwipeRefreshLayout) vi.findViewById(R.id.event_refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //refreshData();
-                recyclerUtil.refreshData("events", recyclerView, refreshLayout);
+                recyclerUtil.refreshData();
             }
         });
+
+        recyclerUtil = new RecyclerUtil("events", getActivity(), recyclerView, refreshLayout);
+        recyclerUtil.initSwipe();
 
         mFab = (FloatingActionButton) vi.findViewById(R.id.event_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -92,27 +98,29 @@ public class EventsFragment extends Fragment {
             }
         });
 
+        loadValues();
+
         return vi;
     }
 
-    public void refreshData(){
+    private void loadValues(){
         DatabaseReference eventsRef = dRef.child("events");
         eventsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 MainActivity.eventsList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Event event = snapshot.getValue(Event.class);
-                    MainActivity.eventsList.add(event);
+                    Event temp = snapshot.getValue(Event.class);
+                    MainActivity.eventsList.add(temp);
                 }
                 MainActivity.eventsAdapter = new EventsAdapter(getActivity());
                 recyclerView.setAdapter(MainActivity.eventsAdapter);
-                refreshLayout.setRefreshing(false);
+                progressLayout.setVisibility(View.GONE);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Failed to Refresh Data", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

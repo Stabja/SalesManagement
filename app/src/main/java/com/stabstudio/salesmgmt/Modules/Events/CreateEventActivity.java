@@ -253,14 +253,6 @@ public class CreateEventActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private boolean chkEmt(EditText editText){
-        return TextUtils.isEmpty(editText.getText().toString());
-    }
-
-    private boolean chkEmtTV(TextView textView){
-        return TextUtils.isEmpty(textView.getText().toString());
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.create_menu, menu);
@@ -283,6 +275,14 @@ public class CreateEventActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.still, R.anim.slide_out_down);
+    }
+
+    private boolean chkEmt(EditText editText){
+        return TextUtils.isEmpty(editText.getText().toString());
+    }
+
+    private boolean chkEmtTV(TextView textView){
+        return TextUtils.isEmpty(textView.getText().toString());
     }
 
     public void postDataToServer(){

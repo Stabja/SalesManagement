@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         progressDialog.setTitle("Loading Data");
         progressDialog.setMessage("Please wait...");
         progressDialog.setCancelable(false);
-        progressDialog.show();
+        //progressDialog.show();
 
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -136,9 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-
-        /*******************************************
-
+        /******************************************
         METHOD TO GENERATE TEST DATA
 
         1. Comment out updateData()
@@ -148,8 +146,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            3.2. Comment out createTestAccountsData(), createTestContactsData(), createTestLeadsData()
 
         *******************************************/
-
-        updateData();
         //createTestAccountsData();
         //createTestContactsData();
         //createTestLeadsData();
@@ -232,85 +228,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void updateData(){
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-
-        salesRef = FirebaseDatabase.getInstance().getReference("Sales");
-        accountsRef = salesRef.child("accounts");
-        contactsRef = salesRef.child("contacts");
-        leadsRef = salesRef.child("leads");
-        dealsRef = salesRef.child("deals");
-        tasksRef = salesRef.child("tasks");
-        eventsRef = salesRef.child("events");
-        feedsRef = salesRef.child("feeds");
-        commentsRef = salesRef.child("comments");
-
-        salesRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                accountsList.clear();
-                contactsList.clear();
-                leadsList.clear();
-                dealsList.clear();
-                tasksList.clear();
-                eventsList.clear();
-                feedsList.clear();
-
-                for(DataSnapshot snapshot : dataSnapshot.child("accounts").getChildren()){
-                    Account temp = snapshot.getValue(Account.class);
-                    accountsList.add(temp);
-                }
-
-                for(DataSnapshot snapshot : dataSnapshot.child("contacts").getChildren()){
-                    Contact temp = snapshot.getValue(Contact.class);
-                    contactsList.add(temp);
-                }
-
-                for(DataSnapshot snapshot : dataSnapshot.child("leads").getChildren()){
-                    Lead temp = snapshot.getValue(Lead.class);
-                    leadsList.add(temp);
-                }
-
-                for(DataSnapshot snapshot : dataSnapshot.child("deals").getChildren()){
-                    Deal temp = snapshot.getValue(Deal.class);
-                    dealsList.add(temp);
-                }
-
-                for(DataSnapshot snapshot : dataSnapshot.child("tasks").getChildren()){
-                    Task temp = snapshot.getValue(Task.class);
-                    tasksList.add(temp);
-                }
-
-                for(DataSnapshot snapshot : dataSnapshot.child("events").getChildren()){
-                    Event temp = snapshot.getValue(Event.class);
-                    eventsList.add(temp);
-                }
-
-                for(DataSnapshot snapshot : dataSnapshot.child("feeds").getChildren()){
-                    Feed temp = snapshot.getValue(Feed.class);
-                    feedsList.add(temp);
-                }
-
-                accountsAdapter = new AccountsAdapter(MainActivity.this);
-                contactsAdapter = new ContactsAdapter(MainActivity.this);
-                leadsAdapter = new LeadsAdapter(MainActivity.this);
-                dealsAdapter = new DealsAdapter(MainActivity.this);
-                eventsAdapter = new EventsAdapter(MainActivity.this);
-                tasksAdapter = new TasksAdapter(MainActivity.this);
-                feedsAdapter = new FeedsAdapter(MainActivity.this);
-
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     public void createTestAccountsData(){

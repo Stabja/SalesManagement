@@ -4,16 +4,22 @@ package com.stabstudio.salesmgmt.models;
 public class Comment {
 
     private String id;
-    private String userId;
+    private String feedId;
+    private String photoUrl;
+    private String author;
     private String text;
+    private String timestamp;
 
     public Comment(){
     }
 
-    public Comment(String id, String userId, String text){
+    public Comment(String id, String feedId, String photoUrl, String author, String text, String timestamp) {
         this.id = id;
-        this.userId = userId;
+        this.feedId = feedId;
+        this.photoUrl = photoUrl;
+        this.author = author;
         this.text = text;
+        this.timestamp = timestamp;
     }
 
     public String getId() {
@@ -24,12 +30,28 @@ public class Comment {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getFeedId() {
+        return feedId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setFeedId(String feedId) {
+        this.feedId = feedId;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getText() {
@@ -40,4 +62,11 @@ public class Comment {
         this.text = text;
     }
 
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 }

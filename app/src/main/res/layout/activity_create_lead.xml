@@ -42,8 +42,7 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="12dp"
                 android:textSize="14dp"
-                android:layout_marginTop="63dp"
-                android:layout_below="@+id/textView"
+                android:layout_below="@+id/dis_image"
                 android:layout_alignParentEnd="true" />
 
             <EditText

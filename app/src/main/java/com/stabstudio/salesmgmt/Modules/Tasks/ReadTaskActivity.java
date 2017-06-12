@@ -40,7 +40,6 @@ public class ReadTaskActivity extends AppCompatActivity {
     @BindView(R.id.editText7) TextView tv7;
     @BindView(R.id.editText8) TextView tv8;
 
-
     private String taskId;
 
     @Override

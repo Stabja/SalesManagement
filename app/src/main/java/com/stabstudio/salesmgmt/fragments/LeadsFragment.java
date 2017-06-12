@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.fabtransitionactivity.SheetLayout;
@@ -28,6 +29,9 @@ import com.stabstudio.salesmgmt.adapters.LeadsAdapter;
 import com.stabstudio.salesmgmt.models.Lead;
 import com.stabstudio.salesmgmt.utils.RecyclerUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class LeadsFragment extends Fragment {
 
@@ -37,7 +41,8 @@ public class LeadsFragment extends Fragment {
     private FloatingActionButton mFab;
     private SheetLayout mSheetLayout;
 
-    private RecyclerUtil recyclerUtil;
+    LinearLayout progressLayout;
+    public static RecyclerUtil recyclerUtil;
     public static LeadsFragment leadsFragment;
 
     private DatabaseReference dRef;
@@ -50,6 +55,9 @@ public class LeadsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vi = inflater.inflate(R.layout.fragment_leads, container, false);
 
+
+        progressLayout = (LinearLayout) vi.findViewById(R.id.progress_layout);
+        progressLayout.setVisibility(View.VISIBLE);
         dRef = FirebaseDatabase.getInstance().getReference("Sales");
         sRef = FirebaseStorage.getInstance().getReference();
 
@@ -59,19 +67,18 @@ public class LeadsFragment extends Fragment {
         recyclerView = (RecyclerView) vi.findViewById(R.id.lead_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(MainActivity.leadsAdapter);
-
-        recyclerUtil = new RecyclerUtil(getActivity(), recyclerView, "leads");
-        recyclerUtil.initSwipe();
+        //recyclerView.setAdapter(MainActivity.leadsAdapter);
 
         refreshLayout = (SwipeRefreshLayout) vi.findViewById(R.id.lead_refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //refreshData();
-                recyclerUtil.refreshData("leads", recyclerView, refreshLayout);
+                recyclerUtil.refreshData();
             }
         });
+
+        recyclerUtil = new RecyclerUtil("leads", getActivity(), recyclerView, refreshLayout);
+        recyclerUtil.initSwipe();
 
         mFab = (FloatingActionButton) vi.findViewById(R.id.lead_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -92,27 +99,29 @@ public class LeadsFragment extends Fragment {
             }
         });
 
+        loadValues();
+
         return vi;
     }
 
-    public void refreshData(){
+    private void loadValues(){
         DatabaseReference leadsRef = dRef.child("leads");
         leadsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 MainActivity.leadsList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Lead lead = snapshot.getValue(Lead.class);
-                    MainActivity.leadsList.add(lead);
+                    Lead temp = snapshot.getValue(Lead.class);
+                    MainActivity.leadsList.add(temp);
                 }
                 MainActivity.leadsAdapter = new LeadsAdapter(getActivity());
                 recyclerView.setAdapter(MainActivity.leadsAdapter);
-                refreshLayout.setRefreshing(false);
+                progressLayout.setVisibility(View.GONE);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "Failed to Refresh Data", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

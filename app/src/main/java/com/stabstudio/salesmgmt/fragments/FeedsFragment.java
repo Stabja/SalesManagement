@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.fabtransitionactivity.SheetLayout;
@@ -28,6 +29,9 @@ import com.stabstudio.salesmgmt.adapters.FeedsAdapter;
 import com.stabstudio.salesmgmt.models.Feed;
 import com.stabstudio.salesmgmt.utils.RecyclerUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class FeedsFragment extends Fragment {
 
@@ -38,6 +42,7 @@ public class FeedsFragment extends Fragment {
     private SheetLayout mSheetLayout;
 
     //private RecyclerUtil recyclerUtil;
+    LinearLayout progressLayout;
     public static FeedsFragment feedsFragment;
 
     private DatabaseReference dRef;
@@ -50,6 +55,8 @@ public class FeedsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vi = inflater.inflate(R.layout.fragment_feeds, container, false);
 
+        progressLayout = (LinearLayout) vi.findViewById(R.id.progress_layout);
+        progressLayout.setVisibility(View.VISIBLE);
         dRef = FirebaseDatabase.getInstance().getReference("Sales");
         sRef = FirebaseStorage.getInstance().getReference();
 
@@ -59,17 +66,13 @@ public class FeedsFragment extends Fragment {
         recyclerView = (RecyclerView) vi.findViewById(R.id.feed_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(MainActivity.feedsAdapter);
-
-        //recyclerUtil = new RecyclerUtil(getActivity(), recyclerView, "feeds");
-        //recyclerUtil.initSwipe();                                                          //Swipe to delete not required in feeds
+        //recyclerView.setAdapter(MainActivity.feedsAdapter);
 
         refreshLayout = (SwipeRefreshLayout) vi.findViewById(R.id.feed_refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshData();
-                //recyclerUtil.refreshData("feeds", recyclerView, refreshLayout);
             }
         });
 
@@ -92,6 +95,8 @@ public class FeedsFragment extends Fragment {
             }
         });
 
+        loadValues();
+
         return vi;
     }
 
@@ -113,6 +118,27 @@ public class FeedsFragment extends Fragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getActivity(), "Failed to Refresh Data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadValues(){
+        DatabaseReference feedsRef = dRef.child("feeds");
+        feedsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                MainActivity.feedsList.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Feed temp = snapshot.getValue(Feed.class);
+                    MainActivity.feedsList.add(temp);
+                }
+                MainActivity.feedsAdapter = new FeedsAdapter(getActivity());
+                recyclerView.setAdapter(MainActivity.feedsAdapter);
+                progressLayout.setVisibility(View.GONE);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

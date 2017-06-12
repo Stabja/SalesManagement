@@ -42,8 +42,7 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="12dp"
                 android:textSize="14dp"
-                android:layout_marginTop="63dp"
-                android:layout_below="@+id/textView"
+                android:layout_below="@+id/view5"
                 android:layout_alignParentEnd="true" />
 
             <EditText
@@ -225,7 +224,8 @@
                 android:layout_height="0.5dp"
                 android:layout_below="@+id/dis_image"
                 android:layout_alignParentEnd="true"
-                android:background="@android:color/darker_gray" />
+                android:background="@android:color/darker_gray"
+                android:id="@+id/view5" />
 
             <View
                 android:id="@+id/view"

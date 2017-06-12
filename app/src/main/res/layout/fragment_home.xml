@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#ddd"
+    android:background="#eee"
     tools:context="com.stabstudio.salesmgmt.fragments.HomeFragment">
 
     <ScrollView
@@ -13,18 +13,17 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardview"
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                card_view:cardCornerRadius="0dp"
-                card_view:cardBackgroundColor="#fff">
+                card_view:cardBackgroundColor="#fff"
+                card_view:cardCornerRadius="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -36,15 +35,15 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="6dp"
+                        android:layout_marginTop="10dp"
                         android:paddingTop="@dimen/nav_header_vertical_spacing"
                         android:src="@drawable/ic_user_blank" />
 
                     <com.github.jhonnyx2012.horizontalpicker.HorizontalPicker
                         android:id="@+id/datePicker"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -54,14 +53,14 @@
                 android:id="@+id/events"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="25dp"
-                android:paddingLeft="20dp"
                 android:paddingBottom="5dp"
-                android:textSize="17dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="24dp"
+                android:text="Events"
                 android:textColor="#000"
-                android:text="Events" />
+                android:textSize="17dp" />
 
-            <include layout="@layout/events_list_item" />
+            <include layout="@layout/events_home_item" />
 
             <!--<android.support.v7.widget.RecyclerView
                 android:id="@+id/events_recyclerview"
@@ -74,14 +73,14 @@
                 android:id="@+id/tasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="25dp"
-                android:paddingLeft="20dp"
                 android:paddingBottom="5dp"
-                android:textSize="17dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="24dp"
+                android:text="Tasks"
                 android:textColor="#000"
-                android:text="Tasks" />
+                android:textSize="17dp" />
 
-            <include layout="@layout/tasks_list_item" />
+            <include layout="@layout/tasks_home_item" />
 
             <!--<android.support.v7.widget.RecyclerView
                 android:id="@+id/tasks_recyclerview"
@@ -94,14 +93,14 @@
                 android:id="@+id/deals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="25dp"
-                android:paddingLeft="20dp"
                 android:paddingBottom="5dp"
-                android:textSize="17dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="24dp"
+                android:text="Deals"
                 android:textColor="#000"
-                android:text="Deals" />
+                android:textSize="17dp" />
 
-            <include layout="@layout/deals_list_item" />
+            <include layout="@layout/deals_home_item" />
 
             <!--<android.support.v7.widget.RecyclerView
                 android:id="@+id/deals_recyclerview"

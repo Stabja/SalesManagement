@@ -108,7 +108,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        AccountsFragment.accountsFragment.refreshData();
+        AccountsFragment.recyclerUtil.refreshData();
         overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_translate);
         MainActivity.accountsAdapter.notifyDataSetChanged();
         finish();
@@ -149,7 +149,6 @@ public class UpdateAccountActivity extends AppCompatActivity {
                         && !chkEmt(et7) && !chkEmt(et8) && !chkEmt(et9) && !chkEmt(et11) &&!chkEmt(et12)){
 
             DatabaseReference accountsRef = dRef.child("accounts");
-
             String key = accountId;
             String firstName = et1.getText().toString();
             String lastName = et2.getText().toString();
@@ -164,14 +163,12 @@ public class UpdateAccountActivity extends AppCompatActivity {
             String revenue = et12.getText().toString();
 
             Account temp = new Account(key, firstName, lastName, email, phone, accountName, accountSite, accountNumber, accountType, ownership, employees, revenue);
-
             accountsRef.child(key).setValue(temp);         //Editing in Firebase
             changeDataInLocalList(temp);                   //Editing in Local List
-
-            AccountsFragment.accountsFragment.refreshData();
+            AccountsFragment.recyclerUtil.refreshData();
             Toast.makeText(this, "Account Updated", Toast.LENGTH_SHORT).show();
+            overridePendingTransition(R.anim.activity_open_scale, R.anim.activity_close_translate);
             finish();
-            overridePendingTransition(R.anim.still, R.anim.slide_out_down);
         } else {
             Toast.makeText(this, "Please fill all values.", Toast.LENGTH_SHORT).show();
         }

@@ -21,8 +21,9 @@
             android:src="@drawable/ic_action_account" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:padding="12dp">
 
@@ -34,11 +35,26 @@
                 tools:text="John Doe" />
 
             <TextView
-                android:id="@+id/comment_body"
+                android:id="@+id/comment_text"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="This is the comment text..." />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/timestamp"
+                android:text="11 mins ago"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
